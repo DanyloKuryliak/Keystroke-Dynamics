@@ -1,0 +1,15 @@
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.DS_Store
+.ipynb_checkpoints/
+# Local typing captures and trained models (optional live mode)
+data/typing_*.csv
+data/model_*.npz
+data/spectrum.png
+output/
+.pytest_cache/
+.mypy_cache/
