@@ -13,3 +13,4 @@ data/spectrum.png
 output/
 .pytest_cache/
 .mypy_cache/
+
