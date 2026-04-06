@@ -53,8 +53,8 @@ python keystroke.py --plot output/figures/spectrum_only.png
 **Live capture**
 
 ```bash
-python keystroke.py live-enroll --user alice --reps 10
-python keystroke.py live-verify --user alice
+python keystroke.py live-enroll --user danylo --reps 10
+python keystroke.py live-verify --user danylo
 ```
 
 Live samples: `data/typing_<user>.csv`. Model: `data/model_<user>.npz`.
