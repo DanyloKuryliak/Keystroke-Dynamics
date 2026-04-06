@@ -5,7 +5,7 @@ Keystroke timing features → column scaling → PCA on the covariance matrix �
 ## Videos
 
 Solchanyk Vasyl - [https://youtu.be/rLNUxA45QkQ]
-
+Kuryliak Danylo - [https://www.youtube.com/watch?v=MvAhFrsoihk]
 
 
 ## Setup
