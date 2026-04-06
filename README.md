@@ -6,6 +6,7 @@ Keystroke timing features → column scaling → PCA on the covariance matrix �
 
 Solchanyk Vasyl - [https://youtu.be/rLNUxA45QkQ]
 Kuryliak Danylo - [https://www.youtube.com/watch?v=MvAhFrsoihk]
+Vitchynkina Sofiia - [https://youtu.be/qmOCMKu1E5Q]
 
 
 ## Setup
