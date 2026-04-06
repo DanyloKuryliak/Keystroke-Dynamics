@@ -2,6 +2,12 @@
 
 Keystroke timing features → column scaling → PCA on the covariance matrix → Euclidean distance in the projected subspace → accept if below a threshold τ.
 
+## Videos
+
+Solchanyk Vasyl - [https://youtu.be/rLNUxA45QkQ]
+
+
+
 ## Setup
 
 ```bash
