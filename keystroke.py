@@ -73,6 +73,71 @@ def load_cmu_csv(path: Path | None = None) -> tuple[np.ndarray, np.ndarray, List
 # Linear algebra: scaling, covariance PCA, Euclidean score
 # ---------------------------------------------------------------------------
 
+def power_iteration(A: np.ndarray,
+                    max_iter: int = 1000,
+                    tol: float = 1e-10) -> tuple[float, np.ndarray]:
+    """
+    Finds dominant eigenvalue/eigenvector of symmetric matrix A
+    using power iteration.
+    """
+    n = A.shape[0]
+
+    # random starting vector
+    b = np.random.rand(n)
+    b = b / np.linalg.norm(b)
+
+    for _ in range(max_iter):
+        b_new = A @ b
+        norm = np.linalg.norm(b_new)
+
+        if norm < EPS:
+            break
+
+        b_new = b_new / norm
+
+        if np.linalg.norm(b_new - b) < tol:
+            b = b_new
+            break
+
+        b = b_new
+
+    # Rayleigh quotient for λ
+    eigval = float(b.T @ A @ b)
+
+    return eigval, b
+
+
+def manual_eigh(A: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """
+    Eigen decomposition for symmetric matrices
+    using power iteration + deflation.
+    """
+    A_work = A.copy()
+    n = A.shape[0]
+
+    eigenvalues = []
+    eigenvectors = []
+
+    for _ in range(n):
+
+        lam, v = power_iteration(A_work)
+
+        if abs(lam) < 1e-12:
+            break
+
+        eigenvalues.append(lam)
+        eigenvectors.append(v)
+
+        # Deflation:
+        A_work = A_work - lam * np.outer(v, v)
+
+    eigenvalues = np.array(eigenvalues)
+    eigenvectors = np.column_stack(eigenvectors)
+
+    return eigenvalues, eigenvectors
+
+# ---------------------------------------------------------------------------
+
 
 @dataclass
 class PCAModel:
@@ -106,7 +171,8 @@ def fit_pca(X: np.ndarray, n_components: int) -> PCAModel:
     d_centered = X_scaled - mu_scaled
     c_mat = _covariance_ddof1(d_centered)
 
-    evals, evecs = np.linalg.eigh(c_mat)
+    evals, evecs = manual_eigh(c_mat)
+    
     order = np.argsort(evals)[::-1]
     evals = evals[order]
     evecs = evecs[:, order]
